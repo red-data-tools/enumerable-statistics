@@ -2,6 +2,7 @@
 #include <ruby/util.h>
 #include <ruby/version.h>
 #include <assert.h>
+#include <float.h>
 #include <math.h>
 
 #if RUBY_API_VERSION_CODE >= 20400
