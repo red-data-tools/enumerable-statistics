@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Statistics features for Enumerable}
   spec.description   = %q{This library provides statistics features for Enumerable}
-  spec.homepage      = "https://github.com/mrkn/enumerable-statistics"
+  spec.homepage      = "https://github.com/red-data-tools/enumerable-statistics"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
