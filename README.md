@@ -1,6 +1,6 @@
 # Enumerable::Statistics
 
-[![Build Status](https://travis-ci.org/mrkn/enumerable-statistics.svg?branch=master)](https://travis-ci.org/mrkn/enumerable-statistics)
+[![Build Status](https://github.com/red-data-tools/enumerable-statistics/actions/workflows/ci.yml/badge.svg)](https://github.com/red-data-tools/enumerable-statistics/actions/workflows/ci.yml)
 
 Enumerable::Statistics provides some methods to calculate statistical summary in arrays and enumerables.
 
