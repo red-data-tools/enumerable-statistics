@@ -1,7 +1,11 @@
 name: CI
 
 on:
-- push
+  push:
+    branches:
+    - "**"
+    - '!dependabot/**'
+  pull_request:
 
 jobs:
   cruby:
