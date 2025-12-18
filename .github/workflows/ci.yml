@@ -3,8 +3,8 @@ name: CI
 on:
   push:
     branches:
-    - "**"
-    - '!dependabot/**'
+      - "**"
+      - "!dependabot/**"
   pull_request:
 
 jobs:
@@ -16,54 +16,54 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - ubuntu-latest
-        - macos-latest
-        - windows-latest
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
         ruby:
-        - 3.4
-        - 3.3
-        - 3.2
-        - 3.1
-        - 3.0
-        - 2.7
-        - 2.6
-        - 2.5
-        - 2.4
-        - debug
+          - 3.4
+          - 3.3
+          - 3.2
+          - 3.1
+          - 3.0
+          - 2.7
+          - 2.6
+          - 2.5
+          - 2.4
+          - debug
         exclude:
-        - os: macos-latest
-          ruby: 2.5
-        - os: macos-latest
-          ruby: 2.4
-        - os: windows-latest
-          ruby: debug
+          - os: macos-latest
+            ruby: 2.5
+          - os: macos-latest
+            ruby: 2.4
+          - os: windows-latest
+            ruby: debug
 
     steps:
-    - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
 
-    - name: Detect installable bundler version
-      run: |
-        case "${{ matrix.ruby }}" in
-          2.7|2.6) bundler_version="2.4.22" ;;
-          2.5|2.4) bundler_version="2.3.27" ;;
-          *)       bundler_version="" ;;
-        esac
-        echo "bundler_version=$bundler_version" >> $GITHUB_ENV
-      shell: bash
+      - name: Detect installable bundler version
+        run: |
+          case "${{ matrix.ruby }}" in
+            2.7|2.6) bundler_version="2.4.22" ;;
+            2.5|2.4) bundler_version="2.3.27" ;;
+            *)       bundler_version="" ;;
+          esac
+          echo "bundler_version=$bundler_version" >> $GITHUB_ENV
+        shell: bash
 
-    - run: gem install bundler${bundler_version:+ -v $bundler_version}
-      shell: bash
+      - run: gem install bundler${bundler_version:+ -v $bundler_version}
+        shell: bash
 
-    - run: bundle install
+      - run: bundle install
 
-    - run: rake --trace compile
+      - run: rake --trace compile
 
-    - run: rake build
-    - run: gem install pkg/*gem
+      - run: rake build
+      - run: gem install pkg/*gem
 
-    - run: rake
+      - run: rake
