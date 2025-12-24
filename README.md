@@ -30,6 +30,9 @@ require 'enumerable/statistics'
 
 The following methods are supplied by this library:
 
+- `Array#sum`, `Enumerable#sum`
+  - Calculates a sum of values in an array or an enumerable
+  - Supports `skip_na: true` to skip `nil` and `NaN` values
 - `Array#mean`, `Enumerable#mean`
   - Calculates a mean of values in an array or an enumerable
 - `Array#variance`, `Enumerable#variance`
