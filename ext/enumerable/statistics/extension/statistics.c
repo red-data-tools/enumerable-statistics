@@ -1283,7 +1283,7 @@ enum_sum(int argc, VALUE* argv, VALUE obj)
     enum_sum_count(obj, init, skip_na, &sum, NULL);
   }
   else {
-    return rb_funcall(obj, id_builtin_enum_sum, argc, &init);
+    sum = rb_funcall(obj, id_builtin_enum_sum, argc, &init);
   }
 #else
   enum_sum_count(obj, init, skip_na, &sum, NULL);
