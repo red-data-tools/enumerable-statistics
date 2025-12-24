@@ -103,7 +103,7 @@ static VALUE sym_auto, sym_left, sym_right, sym_sturges;
 
 static VALUE cHistogram;
 
-static VALUE orig_enum_sum, orig_ary_sum;
+static ID id_builtin_enum_sum, id_builtin_ary_sum;
 
 inline static VALUE
 f_add(VALUE x, VALUE y)
@@ -800,7 +800,7 @@ finish:
  * [Kahan summation algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
  * to compensate the result precision when the `ary` includes Float values.
  *
- * Note that This library does not redefine `sum` method introduced in Ruby 2.4.
+ * Redefines `sum` (Ruby ≥ 2.4). Original is aliased as `__builtin_sum`.
  *
  * @return [Number] A summation value
  */
@@ -817,7 +817,7 @@ ary_sum(int argc, VALUE* argv, VALUE ary)
 
 #ifndef HAVE_ENUM_SUM
   if (!skip_na) {
-    return rb_funcall(orig_ary_sum, rb_intern("call"), argc, &v);
+    return rb_funcall(ary, id_builtin_ary_sum, argc, &v);
   }
 #endif
 
@@ -1263,7 +1263,7 @@ enum_sum_count(VALUE obj, VALUE init, int skip_na, VALUE *sum_ptr, long *count_p
  * [Kahan summation algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
  * to compensate the result precision when the `enum` includes Float values.
  *
- * Note that This library does not redefine `sum` method introduced in Ruby 2.4.
+ * Redefines `sum` (Ruby ≥ 2.4). Original is aliased as `__builtin_sum`.
  *
  * @return [Number] A summation value
  */
@@ -1283,7 +1283,7 @@ enum_sum(int argc, VALUE* argv, VALUE obj)
     enum_sum_count(obj, init, skip_na, &sum, NULL);
   }
   else {
-    rb_funcall(orig_enum_sum, rb_intern("call"), argc, &init);
+    return rb_funcall(obj, id_builtin_enum_sum, argc, &init);
   }
 #else
   enum_sum_count(obj, init, skip_na, &sum, NULL);
@@ -2530,9 +2530,10 @@ Init_extension(void)
 
   mEnumerableStatistics = rb_const_get_at(rb_cObject, rb_intern("EnumerableStatistics"));
 
-  orig_enum_sum = rb_funcall(rb_mEnumerable, rb_intern("public_instance_method"), 1, rb_str_new_cstr("sum"));
-  orig_ary_sum = rb_funcall(rb_cArray, rb_intern("public_instance_method"), 1, rb_str_new_cstr("sum"));
+  id_builtin_enum_sum = rb_intern("__builtin_sum");
+  id_builtin_ary_sum = rb_intern("__builtin_sum");
 
+  rb_define_alias(rb_mEnumerable, "__builtin_sum", "sum");
   rb_define_method(rb_mEnumerable, "sum", enum_sum, -1);
   rb_define_method(rb_mEnumerable, "mean_variance", enum_mean_variance_m, -1);
   rb_define_method(rb_mEnumerable, "mean", enum_mean, 0);
@@ -2541,6 +2542,7 @@ Init_extension(void)
   rb_define_method(rb_mEnumerable, "stdev", enum_stdev, -1);
   rb_define_method(rb_mEnumerable, "value_counts", enum_value_counts, -1);
 
+  rb_define_alias(rb_cArray, "__builtin_sum", "sum");
   rb_define_method(rb_cArray, "sum", ary_sum, -1);
   rb_define_method(rb_cArray, "mean_variance", ary_mean_variance_m, -1);
   rb_define_method(rb_cArray, "mean", ary_mean, -1);
