@@ -800,7 +800,7 @@ finish:
  * [Kahan summation algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
  * to compensate the result precision when the `ary` includes Float values.
  *
- * Redefines `sum` (Ruby ≥ 2.4). Original is aliased as `__sum__`.
+ * Redefines `sum` (Ruby >= 2.4). Original is aliased as `__sum__`.
  *
  * @return [Number] A summation value
  */
@@ -1263,7 +1263,7 @@ enum_sum_count(VALUE obj, VALUE init, int skip_na, VALUE *sum_ptr, long *count_p
  * [Kahan summation algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
  * to compensate the result precision when the `enum` includes Float values.
  *
- * Redefines `sum` (Ruby ≥ 2.4). Original is aliased as `__sum__`.
+ * Redefines `sum` (Ruby >= 2.4). Original is aliased as `__sum__`.
  *
  * @return [Number] A summation value
  */
