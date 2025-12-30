@@ -11,6 +11,6 @@ class RactorTest < Test::Unit::TestCase
     r = Ractor.new do
       [1, 2, 3, 4].mean
     end
-    assert_equal(2.5, r.take)
+    assert_equal(2.5, r.value)
   end
 end
