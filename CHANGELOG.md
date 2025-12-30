@@ -1,3 +1,20 @@
+# 2.0.9
+
+- Add missing `#include <float.h>`
+  - [GH-35](https://github.com/red-data-tools/enumerable-statistics/issues/35)
+  - Patch by Tadashi Saito
+- Suppress `method redefined` warnings
+  - [GH-43](https://github.com/red-data-tools/enumerable-statistics/issues/43)
+  - [GH-46](https://github.com/red-data-tools/enumerable-statistics/issues/46)
+  - Reported by forthrin
+  - Patch by kojix2
+
+## Thanks
+
+- Tadashi Saito
+- forthrin
+- kojix2
+
 # 2.0.8
 
 - Prohibit the use of both `nbins` and `edges` kwargs simultaneously in the `histogram` method.
