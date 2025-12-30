@@ -27,15 +27,6 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.4'
 
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rake-compiler", ">= 0.9.8"
-  spec.add_development_dependency "rspec", ">= 3.4"
-  spec.add_development_dependency "test-unit"
-  spec.add_development_dependency "fuubar"
-  spec.add_development_dependency "yard"
-  spec.add_development_dependency "benchmark-driver"
-
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/red-data-tools/enumerable-statistics/issues",
     "changelog_uri" =>
