@@ -35,4 +35,12 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "fuubar"
   spec.add_development_dependency "yard"
   spec.add_development_dependency "benchmark-driver"
+
+  spec.metadata = {
+    "bug_tracker_uri" => "https://github.com/red-data-tools/enumerable-statistics/issues",
+    "changelog_uri" =>
+      "https://github.com/red-data-tools/enumerable-statistics/releases/tag/v#{spec.version}",
+    "homepage_uri" => spec.homepage,
+    "source_code_uri" => "https://github.com/red-data-tools/enumerable-statistics.git",
+  }
 end
