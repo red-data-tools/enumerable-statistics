@@ -22,7 +22,7 @@ module EnumerableStatistics
 
       imin, i = 0, 1
       while i < n
-        imin = i if self[i] < self[imax]
+        imin = i if self[i] < self[imin]
         i += 1
       end
       [self[imin], imin]
