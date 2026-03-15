@@ -3,6 +3,12 @@ require 'enumerable/statistics'
 require 'delegate'
 
 RSpec.describe Array do
+  describe '#sum' do
+    it 'sums with a complex init' do
+      expect([1, 2, 3].sum(Complex(1, 2))).to eq(Complex(7, 2))
+    end
+  end
+
   describe '#mean' do
     let(:ary) { [] }
     let(:block) { nil }
