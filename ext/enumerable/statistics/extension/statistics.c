@@ -163,7 +163,7 @@ complex_add(VALUE self, VALUE other)
 
     real = f_add(RCOMPLEX(self)->real, other);
 
-    return complex_new(CLASS_OF(self), real, RCOMPLEX(other)->imag);
+    return complex_new(CLASS_OF(self), real, RCOMPLEX(self)->imag);
   }
   return rb_num_coerce_bin(self, other, idPLUS);
 }
